@@ -4,5 +4,8 @@ services:
     build: .
     volumes:
       - .:/usr/src/app
+      - /tmp/.X11-unix:/tmp/.X11-unix # Mount the X11 socket
     environment:
       - PYTHONUNBUFFERED=1
+      - DISPLAY=unix${DISPLAY} # Use the host's display server
+    network_mode: "host"
